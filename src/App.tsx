@@ -80,6 +80,45 @@ const ScrollToTop = () => {
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // --- Form Logic States ---
+  const [result, setResult] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // --- Form Submission Handler ---
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setResult("Sending....");
+
+    const formData = new FormData(event.target);
+
+    // Form Configuration
+    formData.append("access_key", "0f74e943-b84e-4067-85b6-8f498bcf68da");
+    formData.append("subject", `New Enquiry from ${formData.get("company")}`);
+    formData.append("from_name", "Decimerix Contact Form");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setResult("Form Submitted Successfully!");
+        event.target.reset();
+      } else {
+        console.log("Error", data);
+        setResult(data.message);
+      }
+    } catch (error) {
+      setResult("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const methodology = [
     {
       phase: "1. The Diagnostic Phase",
@@ -248,7 +287,7 @@ export default function App() {
       </nav>
 
       <main className="pt-20">
-        {/* Hero Section - REDUCED PADDING & BUTTONS REMOVED */}
+        {/* Hero Section */}
         <section className="relative overflow-hidden py-12 lg:py-20 bg-white">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-50/50 -skew-x-12 translate-x-20 hidden lg:block"></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -271,8 +310,6 @@ export default function App() {
                   Restore" of corporate accounting systems for Individuals,
                   Startups, and SMEs.
                 </p>
-
-                {/* Buttons Removed from here */}
 
                 <div className="mt-8 pt-12 border-t border-slate-100">
                   <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
@@ -299,7 +336,7 @@ export default function App() {
               >
                 <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white">
                   <img
-                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000"
+                    src="/Hero_image.jpg"
                     alt="Financial"
                     className="w-full h-[450px] object-cover"
                   />
@@ -493,10 +530,6 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-
-                <button className="bg-brand-emerald text-white px-8 py-4 rounded-2xl font-black text-lg hover:bg-emerald-600 transition-all flex items-center gap-3">
-                  Learn Our Methodology <ArrowRightLeft className="w-5 h-5" />
-                </button>
               </div>
 
               <div className="relative">
@@ -617,10 +650,15 @@ export default function App() {
                   viewport={{ once: true }}
                   className="bg-white/5 backdrop-blur-xl border border-white/10 p-10 lg:p-14 rounded-[3.5rem] shadow-2xl relative"
                 >
-                  <form
-                    className="space-y-6"
-                    onSubmit={(e) => e.preventDefault()}
-                  >
+                  <form className="space-y-6" onSubmit={onSubmit}>
+                    {/* Honeypot Spam Protection */}
+                    <input
+                      type="checkbox"
+                      name="botcheck"
+                      className="hidden"
+                      style={{ display: "none" }}
+                    />
+
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
@@ -630,6 +668,8 @@ export default function App() {
                           <Building2 className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-brand-emerald transition-colors" />
                           <input
                             type="text"
+                            name="company"
+                            required
                             className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-6 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-emerald focus:bg-white/10 transition-all font-bold"
                             placeholder="Acme Corp"
                           />
@@ -643,6 +683,8 @@ export default function App() {
                           <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-brand-emerald transition-colors" />
                           <input
                             type="email"
+                            name="email"
+                            required
                             className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-6 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-emerald focus:bg-white/10 transition-all font-bold"
                             placeholder="ceo@acme.com"
                           />
@@ -650,26 +692,63 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
-                        Service Required
-                      </label>
-                      <div className="relative group">
-                        <ClipboardList className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-brand-emerald transition-colors z-10" />
-                        <select className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-12 py-4 text-white focus:outline-none focus:border-brand-emerald focus:bg-white/10 transition-all font-bold appearance-none cursor-pointer">
-                          <option className="bg-slate-900">COA Cleanup</option>
-                          <option className="bg-slate-900">
-                            Inventory Master Cleanup
-                          </option>
-                          <option className="bg-slate-900">
-                            Financial Reporting
-                          </option>
-                          <option className="bg-slate-900">
-                            System Migration
-                          </option>
-                        </select>
-                        <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
-                          <ChevronUp className="rotate-180 w-4 h-4" />
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                          Contact Number
+                        </label>
+                        <div className="relative group">
+                          <Phone className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-brand-emerald transition-colors" />
+                          <input
+                            type="tel"
+                            name="phone"
+                            required
+                            className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-6 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-emerald focus:bg-white/10 transition-all font-bold"
+                            placeholder="+91 00000 00000"
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                          Service Required
+                        </label>
+                        <div className="relative group">
+                          <ClipboardList className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-brand-emerald transition-colors z-10" />
+                          <select
+                            name="service"
+                            className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-12 py-4 text-white focus:outline-none focus:border-brand-emerald focus:bg-white/10 transition-all font-bold appearance-none cursor-pointer"
+                          >
+                            <option
+                              className="bg-slate-900"
+                              value="COA Cleanup"
+                            >
+                              COA Cleanup
+                            </option>
+                            <option
+                              className="bg-slate-900"
+                              value="Inventory Master Cleanup"
+                            >
+                              Inventory Master Cleanup
+                            </option>
+                            <option
+                              className="bg-slate-900"
+                              value="Financial Reporting"
+                            >
+                              Financial Reporting
+                            </option>
+                            <option
+                              className="bg-slate-900"
+                              value="System Migration"
+                            >
+                              System Migration
+                            </option>
+                            <option className="bg-slate-900" value="Others">
+                              Others
+                            </option>
+                          </select>
+                          <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                            <ChevronUp className="rotate-180 w-4 h-4" />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -681,17 +760,31 @@ export default function App() {
                       <div className="relative group">
                         <MessageSquare className="absolute left-5 top-6 w-5 h-5 text-slate-500 group-focus-within:text-brand-emerald transition-colors" />
                         <textarea
+                          name="message"
                           rows={4}
+                          required
                           className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-6 py-5 text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-emerald focus:bg-white/10 transition-all font-bold"
-                          placeholder="Describe your current system challenges..."
+                          placeholder="Describe your current challenges..."
                         ></textarea>
                       </div>
                     </div>
 
-                    <button className="w-full bg-brand-emerald text-white py-5 rounded-2xl font-black text-lg hover:bg-emerald-400 hover:-translate-y-1 transition-all shadow-xl shadow-brand-emerald/20 flex items-center justify-center gap-3 active:scale-[0.98] group">
-                      Request System Audit{" "}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-brand-emerald text-white py-5 rounded-2xl font-black text-lg hover:bg-emerald-400 hover:-translate-y-1 transition-all shadow-xl shadow-brand-emerald/20 flex items-center justify-center gap-3 active:scale-[0.98] group disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? "Processing..." : "Get in touch"}{" "}
                       <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </button>
+
+                    {result && (
+                      <p
+                        className={`text-center text-xs font-bold uppercase tracking-widest mt-4 ${result.includes("Successfully") ? "text-brand-emerald" : "text-red-400"}`}
+                      >
+                        {result}
+                      </p>
+                    )}
 
                     <p className="text-center text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-6">
                       <Sparkles className="inline w-3 h-3 mr-1 text-brand-emerald" />
