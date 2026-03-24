@@ -424,22 +424,30 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div>
-                <h2 className="text-sm font-black text-brand-emerald uppercase tracking-[0.3em] mb-6">
-                  Why Entrust Your Books to Decimerix?
+                <h2 className="text-xl font-black text-brand-emerald uppercase tracking-[0.3em] mb-6">
+                  Why Decimerix?
                 </h2>
                 <h3 className="text-4xl lg:text-5xl font-black text-brand-navy mb-10 leading-tight">
                   We Resolve the Friction while you focus on your mission.
                 </h3>
-                <p className="text-slate-600 text-xl mb-12 leading-relaxed">
-                  Business growth often brings unintended complexity. Systems
-                  that worked yesterday can become the bottlenecks of today,
-                  leading to fragmented reporting and a general loss of
-                  financial visibility.
+                <p className="text-slate-600 text-xl mb-5 leading-relaxed">
+                  <span className="text-brand-emerald font-slate-600 leading-tight">
+                    Decimerix{" "}
+                  </span>
+                  identify the evolving challenges faced by modern entities and
+                  offer a powerful, reliable and cost-effective combination of{" "}
+                  <span className="text-brand-emerald font-slate-600 leading-tight">
+                    Fina
+                  </span>
+                  ncial so
+                  <span className="text-brand-emerald font-slate-600 leading-tight">
+                    lutions.
+                  </span>
                 </p>
-                <p className="text-slate-600 text-xl mb-12 leading-relaxed">
+                <p className="text-slate-600 text-xl mb-5 leading-relaxed">
                   You have built a business of value. We are here to ensure that
                   value is accurately reflected, protected, and prepared for the
-                  next stage of your journey. Let us handle the complexity, so
+                  next stage of your journey. Let us handle the bottlenecks, so
                   you can return to your core operations.
                 </p>
               </div>
@@ -451,18 +459,15 @@ export default function App() {
                     A Note on Financial Peace of Mind
                   </h4>
                   <p className="text-white text-2xl font-medium leading-relaxed mb-10 italic">
-                    "We understand the pressure of managing business operations
+                    "We understand the pressure of managing business activities
                     and the anxiety of audit deadlines. Our role is to step into
                     the complexity and systematically restore the structural
                     integrity of your books."
                   </p>
                   <div className="flex items-center gap-6">
                     <div>
-                      <p className="text-white font-black uppercase tracking-widest">
+                      <p className="text-brand-emerald font-type italic font-black uppercase tracking-widest">
                         Decimerix Finalutions
-                      </p>
-                      <p className="text-brand-emerald text-xs font-bold uppercase tracking-widest">
-                        Strategic Financial Architecture
                       </p>
                     </div>
                   </div>
@@ -485,12 +490,9 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-2 gap-24 items-center">
               <div>
-                <h2 className="text-sm font-black text-brand-emerald uppercase tracking-[0.3em] mb-6">
+                <h2 className="text-xl font-black text-brand-emerald uppercase tracking-[0.3em] mb-6">
                   OUR SERVICES
                 </h2>
-                <h3 className="text-4xl lg:text-5xl font-black text-brand-navy mb-10 leading-tight">
-                  Strategic Focus: High-Complexity Cleanup.
-                </h3>
 
                 <div className="grid sm:grid-cols-2 gap-6 mb-12">
                   {features.map((feature, i) => (
