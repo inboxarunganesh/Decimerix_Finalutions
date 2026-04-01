@@ -575,56 +575,45 @@ export default function App() {
             <div className="grid lg:grid-cols-12 gap-16 items-center">
               <div className="lg:col-span-5">
                 <h2 className="text-5xl lg:text-6xl font-black text-white mb-8 leading-tight tracking-tight">
-                  Secure Your{" "}
-                  <span className="text-brand-emerald">Financial</span> Future.
+                  Take The First Step Towards{" "}
+                  <span className="text-brand-emerald">Financial</span> Clarity.
                 </h2>
-                <p className="text-slate-400 text-xl mb-12 leading-relaxed font-medium">
-                  We don't just "fix books"—we build structural integrity. Reach
-                  out to our specialists to begin your system restoration.
-                </p>
 
                 <div className="grid gap-8">
-                  <div className="flex items-center gap-6 group">
+                  {/* Email Hyperlink with Pre-filled Text */}
+                  <a
+                    href="mailto:info@decimerix.com?subject=Inquiry%20for%20Decimerix%20Services&body=Hi%20Decimerix%20Team,%0A%0AI%20would%20like%20to%20know%20more%20about%20your%20accounting%20and%20bookkeeping%20services.%0A%0ARegards,"
+                    className="flex items-center gap-6 group transition-all"
+                  >
                     <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-emerald transition-all duration-300">
                       <Mail className="w-6 h-6 text-brand-emerald group-hover:text-white" />
                     </div>
                     <div>
                       <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-1">
-                        write to
+                        write to us
                       </p>
-                      <p className="text-white font-black text-xl hover:text-brand-emerald transition-colors cursor-pointer">
+                      <p className="text-white font-black text-xl group-hover:text-brand-emerald transition-colors">
                         info@decimerix.com
                       </p>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-6 group">
-                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-emerald transition-all duration-300">
-                      <Phone className="w-6 h-6 text-brand-emerald group-hover:text-white" />
-                    </div>
-                    <div>
-                      <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-1">
-                        Expert Consultation
-                      </p>
-                      <p className="text-white font-black text-xl hover:text-brand-emerald transition-colors cursor-pointer">
-                        +91 7603988816
-                      </p>
-                    </div>
-                  </div>
+                  </a>
+
+                  {/* WhatsApp Hyperlink with Pre-filled Text */}
                   <a
-                    href="https://wa.me/917603988816"
+                    href="https://wa.me/917603988816?text=Hi%20Decimerix%20Team,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-6 group"
+                    className="flex items-center gap-6 group transition-all"
                   >
                     <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-emerald transition-all duration-300">
                       <MessageCircle className="w-6 h-6 text-brand-emerald group-hover:text-white" />
                     </div>
                     <div>
                       <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-1">
-                        WhatsApp
+                        Chat to us
                       </p>
-                      <p className="text-white font-black text-xl hover:text-brand-emerald transition-colors cursor-pointer">
-                        Chat with us
+                      <p className="text-white font-black text-xl group-hover:text-brand-emerald transition-colors">
+                        +91 7603988816
                       </p>
                     </div>
                   </a>
