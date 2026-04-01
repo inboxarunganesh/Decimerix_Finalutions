@@ -610,7 +610,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-1">
-                        Chat to us
+                        Chat with us
                       </p>
                       <p className="text-white font-black text-xl group-hover:text-brand-emerald transition-colors">
                         +91 7603988816
