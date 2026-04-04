@@ -28,6 +28,8 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
+// --- Added Speed Insights Import ---
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // --- Scroll To Top Component ---
 const ScrollToTop = () => {
@@ -209,7 +211,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
       <ScrollToTop />
+      {/* --- Analytics and Speed Insights Components --- */}
       <Analytics />
+      <SpeedInsights />
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 z-50">
